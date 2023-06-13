@@ -5,7 +5,7 @@ import ILCatUmum from './cat-dok-umum.svg';
 import ILCatPsikiater from './cat-dok-psikiater.svg';
 import ILCatObat from './cat-dok-obat.svg';
 import ILHospitalBG from './hospitals-background.png';
-import ILCatAnak from './cat-dok-anak.png';
+import ILCatAnak from './cat-dok-anak.svg';
 
 export {
   ILLogo,
