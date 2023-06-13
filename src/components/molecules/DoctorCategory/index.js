@@ -1,11 +1,11 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity} from 'react-native';
-import {ILCatUmum, ILCatPsikiater, ILCatObat} from '../../../assets';
+import {ILCatUmum, ILCatPsikiater, ILCatObat, ILCatAnak} from '../../../assets';
 import {colors, fonts} from '../../../utils';
 
 const DoctorCategory = ({category, onPress}) => {
   const Icon = () => {
-    if (category === 'dokter obatmum') {
+    if (category === 'dokter umum') {
       return <ILCatUmum style={styles.illustration} />;
     }
     if (category === 'psikiater') {
@@ -13,6 +13,9 @@ const DoctorCategory = ({category, onPress}) => {
     }
     if (category === 'dokter obat') {
       return <ILCatObat style={styles.illustration} />;
+    }
+    if (category === 'dokter anak') {
+      return <ILCatAnak style={styles.illustration} />;
     }
     return <ILCatUmum style={styles.illustration} />;
   };
