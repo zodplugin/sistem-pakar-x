@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React, {useEffect, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Header, List} from '../../components';
