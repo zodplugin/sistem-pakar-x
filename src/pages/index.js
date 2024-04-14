@@ -12,6 +12,8 @@ import UserProfile from './UserProfile';
 import UpdateProfile from './UpdateProfile';
 import DoctorProfile from './DoctorProfile';
 import News from './News';
+import Question from './Question';
+import Result from './Result'
 
 export {
   Splash,
@@ -28,4 +30,6 @@ export {
   UpdateProfile,
   DoctorProfile,
   News,
+  Question,
+  Result,
 };
