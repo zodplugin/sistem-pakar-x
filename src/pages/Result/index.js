@@ -1,8 +1,8 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 
 const ResultScreen = ({ route }) => {
-  // Di sini Anda bisa mendapatkan data jawaban dari route.params
   const { result } = route.params;
   return (
     <View style={styles.container}>

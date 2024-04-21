@@ -38,7 +38,7 @@ const QuestionsScreen = () => {
     },
     {
       question: 'Apakah Anda pernah mengalami ciri - ciri seperti Pelacuran, kerja atau pelayanan paksa, perbudakan, atau praktek serupa perbudakan, penindasan, pemerasan, pemanfaatan fisik, seksual, organ produksi, atau secara melawan hukum, memindahkan atau mentransplantasi organ dan/atau jaringan tubuh atau memanfaatkan tenaga atau kemampuan seseorang oleh pihak lain untuk mendapatkan keuntungan baik materil maupun immateril ?',
-      code: 'K006',
+      code: 'C006',
     },
   ];
 
@@ -56,9 +56,8 @@ const QuestionsScreen = () => {
       console.log(trueKeys);
       const result = forwardChaining(answers);
       const resultArray = Object.keys(result).filter(key => result[key]);
-      console.log(resultArray);
-      console.log(result);
-      navigation.navigate('Result', {result});
+      console.log(resultArray)
+      navigation.navigate('Result', { result: resultArray });
     } else {
       alert('Silakan lengkapi semua pertanyaan sebelum menyelesaikan.');
     }
@@ -73,41 +72,44 @@ const QuestionsScreen = () => {
       { conditions: ['C004'], result: ['K004'] },
       { conditions: ['C005'], result: ['K005'] },
       { conditions: ['C006'], result: ['K006'] },
-      { conditions: ['C004'], result: ['K004'] },
-      { conditions: ['K001','K002','K003','K004','K005','K006'], result: ['P001'] },
-      { conditions: ['K001','K004'], result: ['P002'] },
-      { conditions: ['K001','K002','K003','K004','K005','K006'], result: ['P003'] },
+      { conditions: ['K001', 'K004'], result: ['P002'] },
       { conditions: ['K004'], result: ['P004'] },
-      { conditions: ['K005','K006'], result: ['P005'] },
-      { conditions: ['K004','K006'], result: ['P007'] },
-      { conditions: ['K001','K002','K003','K004'], result: ['P008'] },
-      { conditions: ['K001','K002','K003','K004'], result: ['P009'] },
-      { conditions: ['K005','K006'], result: ['P010'] },
-      { conditions: ['K004','K006'], result: ['P011'] },
-  ];
+      { conditions: ['K005', 'K006'], result: ['P005'] },
+      { conditions: ['K004', 'K006'], result: ['P007'] },
+      { conditions: ['K005', 'K006'], result: ['P010'] },
+      { conditions: ['K004', 'K006'], result: ['P011'] },
+      { conditions: ['K001', 'K002', 'K003', 'K004'], result: ['P008'] },
+      { conditions: ['K001', 'K002', 'K003', 'K004'], result: ['P009'] },
+      { conditions: ['K001', 'K002', 'K003', 'K004', 'K005', 'K006'], result: ['P001'] },
+      { conditions: ['K001', 'K002', 'K003', 'K004', 'K005', 'K006'], result: ['P003'] },
+    ];
+  
     while (true) {
-        let newInferences = false;
-
-        for (let i = 0; i < rules.length; i++) {
-            const rule = rules[i];
-            const conditions = rule.conditions;
-            const result = rule.result;
-
-            if (conditions.every(condition => inferredFacts[condition] || facts[condition])) {
-                if (!inferredFacts[result]) {
-                    inferredFacts[result] = true;
-                    newInferences = true;
-                }
-            }
+      let newInferences = false;
+  
+      for (let i = 0; i < rules.length; i++) {
+        const rule = rules[i];
+        const conditions = rule.conditions;
+        const result = rule.result;
+  
+        const allConditionsInferred = conditions.every(condition => inferredFacts[condition] || facts[condition]);
+  
+        const resultNotInferred = !inferredFacts[result];
+  
+        if (allConditionsInferred && resultNotInferred) {
+          inferredFacts[result] = true;
+          newInferences = true;
         }
-
-        if (!newInferences) {
-            break;
-        }
+      }
+  
+      if (!newInferences) {
+        break;
+      }
     }
-
+  
     return inferredFacts;
-}
+  }
+  
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
