@@ -56,8 +56,10 @@ const QuestionsScreen = () => {
       console.log(trueKeys);
       const result = forwardChaining(answers);
       const resultArray = Object.keys(result).filter(key => result[key]);
-      console.log(resultArray)
-      navigation.navigate('Result', { result: resultArray });
+      const lastElement = resultArray[resultArray.length - 1];
+      const myArray = lastElement.split(",");
+      console.log(myArray)
+      navigation.navigate('Result', { result: myArray });
     } else {
       alert('Silakan lengkapi semua pertanyaan sebelum menyelesaikan.');
     }
@@ -72,16 +74,14 @@ const QuestionsScreen = () => {
       { conditions: ['C004'], result: ['K004'] },
       { conditions: ['C005'], result: ['K005'] },
       { conditions: ['C006'], result: ['K006'] },
-      { conditions: ['K001', 'K004'], result: ['P002'] },
       { conditions: ['K004'], result: ['P004'] },
+      { conditions: ['K001', 'K004'], result: ['P002'] },
       { conditions: ['K005', 'K006'], result: ['P005'] },
       { conditions: ['K004', 'K006'], result: ['P007'] },
       { conditions: ['K005', 'K006'], result: ['P010'] },
       { conditions: ['K004', 'K006'], result: ['P011'] },
-      { conditions: ['K001', 'K002', 'K003', 'K004'], result: ['P008'] },
-      { conditions: ['K001', 'K002', 'K003', 'K004'], result: ['P009'] },
-      { conditions: ['K001', 'K002', 'K003', 'K004', 'K005', 'K006'], result: ['P001'] },
-      { conditions: ['K001', 'K002', 'K003', 'K004', 'K005', 'K006'], result: ['P003'] },
+      { conditions: ['K001', 'K002', 'K003', 'K004'], result: ['P008','P009'] },
+      { conditions: ['K001', 'K002', 'K003', 'K004', 'K005', 'K006'], result: ['P001','P003'] },
     ];
   
     while (true) {
