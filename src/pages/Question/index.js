@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React, {useState} from 'react';
+import React, {useEffect,useState} from 'react';
 import {
   View,
   Text,
@@ -10,10 +10,28 @@ import {
 } from 'react-native';
 import {RadioButton} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
-
+import {ILNullPhoto} from '../../assets';
+import {getData} from '../../utils';
 const QuestionsScreen = () => {
   const navigation = useNavigation();
   const [answers, setAnswers] = useState({});
+  const [profile, setProfile] = useState({
+    photo: ILNullPhoto,
+    fullName: '',
+    profession: '',
+  });
+  useEffect(() => {
+    navigation.addListener('focus', () => {
+      getUserData();
+    });
+  }, [navigation]);
+  const getUserData = () => {
+    getData('user').then(res => {
+      const data = res;
+      data.photo = res?.photo?.length > 1 ? {uri: res.photo} : ILNullPhoto;
+      setProfile(res);
+    });
+  };
   const questions = [
     {
       question: 'Apakah Anda pernah mengalami  ciri - ciri seperti Memukul,menampar, mencekik, menendang, penjambakan, mendorong secara kasar, penginjakan, gigitan, cubitan, melempar barang ke tubuh korban, melukai dengan tangan kosong atau alat/senjata seperti rotan, ikat pinggang, kayu, besi, sundutan rokok, penyiksaan menggunakan benda tajam?',
@@ -59,7 +77,7 @@ const QuestionsScreen = () => {
       const lastElement = resultArray[resultArray.length - 1];
       const myArray = lastElement.split(",");
       console.log(myArray)
-      navigation.navigate('Result', { result: myArray });
+      navigation.replace('MainApp', { result: myArray });
     } else {
       alert('Silakan lengkapi semua pertanyaan sebelum menyelesaikan.');
     }

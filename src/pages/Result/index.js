@@ -1,15 +1,12 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
 import { View, Text, StyleSheet, Button, FlatList, TouchableOpacity } from 'react-native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import { Profile } from '../../components';
 
-const Drawer = createDrawerNavigator();
 
 const ResultScreen = ({ route, navigation }) => {
-  const result = route.params.result;
-  console.log(result);
+  const { result } = route.params;
 
   const pelayanan = [
     ['P001', 'Penanganan Pengaduan'],
@@ -47,38 +44,21 @@ const ResultScreen = ({ route, navigation }) => {
   );
 
   return (
-    <NavigationContainer>
-      <Drawer.Navigator
-        drawerPosition="top"
-        screenOptions={{
-          headerShown: false,
-          drawerStyle: {
-            backgroundColor: '#f0f0f0',
-            height: 100,
-          },
-        }}
-      >
-        <Drawer.Screen name="Result">
-          {() => (
-            <View style={styles.container}>
-              <Card>
-                <Text style={styles.title}>Kode:</Text>
-                <Text style={styles.result}>{result.join(', ')}</Text>
-                <Text style={styles.title}>Hasil:</Text>
-                <FlatList
-                  data={convertedResult.filter((item) => item !== null)}
-                  renderItem={renderItem}
-                  keyExtractor={(item) => item[0]}
-                />
-              </Card>
-              <View style={styles.buttonContainer}>
-                <Button title="Next" onPress={() => console.log("Next button pressed")} />
-              </View>
-            </View>
-          )}
-        </Drawer.Screen>
-      </Drawer.Navigator>
-    </NavigationContainer>
+    <View style={styles.container}>
+      <Card>
+        <Text style={styles.title}>Kode:</Text>
+        <Text style={styles.result}>{result.join(', ')}</Text>
+        <Text style={styles.title}>Hasil:</Text>
+        <FlatList
+          data={convertedResult.filter((item) => item !== null)}
+          renderItem={renderItem}
+          keyExtractor={(item) => item[0]}
+        />
+      </Card>
+      <View style={styles.buttonContainer}>
+        <Button title="Next" onPress={() => console.log("Next button pressed")} />
+      </View>
+    </View>
   );
 };
 

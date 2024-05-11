@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import {
@@ -16,17 +17,30 @@ import {
   DoctorProfile,
   News,
   Question,
-  Result
+  Result,
 } from '../pages';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {BottomNavigator} from '../components';
-
+import {BottomNavigator, Profile} from '../components';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-
-const MainApp = () => {
+const Drawer = createDrawerNavigator();
+const MainApp = ({route}) => {
+  const hasil = route && route.params ? route.params.hasil : null;
+  console.log('Mainapp = ' + hasil)
+  const name = hasil ? "Result" : "Question";
   return (
+    // <Drawer.Navigator initialRouteName="Home">
+    //   <Drawer.Screen
+    //     name="Result"
+    //     initialParams={{result: hasil}}
+    //     component={Result}
+    //   />
+    //   <Drawer.Screen name="Notifications" component={Messages} />
+    // </Drawer.Navigator>
     <Tab.Navigator tabBar={props => <BottomNavigator {...props} />}>
+      <Tab.Screen name={name} component={hasil !== undefined ? Result : Question} initialParams={{result: hasil}}/>
+      {/* <Tab.Screen name="Profile" component={UserProfile} /> */}
       <Tab.Screen name="Doctor" component={Doctor} />
       <Tab.Screen name="Messages" component={Messages} />
       <Tab.Screen name="Hospitals" component={Hospitals} />
@@ -37,6 +51,11 @@ const MainApp = () => {
 const Router = () => {
   return (
     <Stack.Navigator initialRouteName="Splash">
+      <Stack.Screen
+        name="Profile"
+        component={Profile}
+        options={{headerShown: false}}
+      />
       <Stack.Screen
         name="Splash"
         component={Splash}

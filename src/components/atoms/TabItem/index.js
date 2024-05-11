@@ -12,7 +12,8 @@ import {colors, fonts} from '../../../utils';
 
 const TabItem = ({title, active, onPress, onLongPress}) => {
   const Icon = () => {
-    if (title === 'Doctor') {
+    console.log(title)
+    if (title === 'Profile') {
       return active ? <IconDoctorActive /> : <IconDoctor />;
     }
     if (title === 'Messages') {
