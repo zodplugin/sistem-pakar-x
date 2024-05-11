@@ -6,12 +6,13 @@ import {
   TouchableOpacity,
   StyleSheet,
   ScrollView,
-  Button,
 } from 'react-native';
+import {Button} from '../../components';
 import {RadioButton} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import {ILNullPhoto} from '../../assets';
-import {getData} from '../../utils';
+import {getData, storeData} from '../../utils';
+import AsyncStorage from '@react-native-community/async-storage';
 const QuestionsScreen = () => {
   const navigation = useNavigation();
   const [answers, setAnswers] = useState({});
@@ -77,6 +78,13 @@ const QuestionsScreen = () => {
       const lastElement = resultArray[resultArray.length - 1];
       const myArray = lastElement.split(",");
       console.log(myArray)
+      AsyncStorage.setItem('myResult', JSON.stringify(myArray))
+      .then(() => {
+        console.log('myArray is saved to AsyncStorage');
+      })
+      .catch((error) => {
+        console.error('Error saving myArray to AsyncStorage:', error);
+      });
       navigation.replace('MainApp', { result: myArray });
     } else {
       alert('Silakan lengkapi semua pertanyaan sebelum menyelesaikan.');

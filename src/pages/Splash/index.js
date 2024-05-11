@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {ILLogo} from '../../assets';
+import {StyleSheet, Text, View, Image} from 'react-native';
+import {IconX} from '../../assets';
 import {colors, fonts} from '../../utils';
 import {Fire} from '../../config';
 
@@ -21,8 +21,11 @@ const Splash = ({navigation}) => {
 
   return (
     <View style={styles.page}>
-      <ILLogo />
-      <Text style={styles.title}>Dr.Kid</Text>
+      <Image
+          style={{ height:100, width:100, borderRadius:100 }}
+          source={IconX}
+        />
+      <Text style={styles.title}>X</Text>
     </View>
   );
 };

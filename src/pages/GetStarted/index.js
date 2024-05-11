@@ -1,6 +1,6 @@
 import React from 'react';
-import {StyleSheet, Text, View, ImageBackground} from 'react-native';
-import {ILLogo, ILGetStarted} from '../../assets';
+import {StyleSheet, Text, View, ImageBackground,Image} from 'react-native';
+import {ILLogo, ILGetStarted,IconX} from '../../assets';
 import {Button, Gap} from '../../components';
 import {colors, fonts} from '../../utils';
 
@@ -8,10 +8,10 @@ const GetStarted = ({navigation}) => {
   return (
     <ImageBackground source={ILGetStarted} style={styles.page}>
       <View>
-        <ILLogo />
-        <Text style={styles.title}>
-          Konsultasi dengan dokter jadi lebih mudah & fleksibel
-        </Text>
+        <Image
+          style={{ height:100, width:100, borderRadius:100 }}
+          source={IconX}
+        />
       </View>
       <View>
         <Button

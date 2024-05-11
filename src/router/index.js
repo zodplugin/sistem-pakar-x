@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import React from 'react';
+
 import {createStackNavigator} from '@react-navigation/stack';
 import {
   Splash,
@@ -28,7 +28,6 @@ const Drawer = createDrawerNavigator();
 const MainApp = ({route}) => {
   const hasil = route && route.params ? route.params.hasil : null;
   console.log('Mainapp = ' + hasil)
-  const name = hasil ? "Result" : "Question";
   return (
     // <Drawer.Navigator initialRouteName="Home">
     //   <Drawer.Screen
@@ -39,7 +38,7 @@ const MainApp = ({route}) => {
     //   <Drawer.Screen name="Notifications" component={Messages} />
     // </Drawer.Navigator>
     <Tab.Navigator tabBar={props => <BottomNavigator {...props} />}>
-      <Tab.Screen name={name} component={hasil !== undefined ? Result : Question} initialParams={{result: hasil}}/>
+      <Tab.Screen name={'Result'} component={Result} initialParams={{result: hasil}}/>
       {/* <Tab.Screen name="Profile" component={UserProfile} /> */}
       <Tab.Screen name="Doctor" component={Doctor} />
       <Tab.Screen name="Messages" component={Messages} />
@@ -69,7 +68,7 @@ const Router = () => {
       <Stack.Screen
         name="Question"
         component={Question}
-        options={{headerShown: false}}
+        options={{headerShown: true}}
       />
       <Stack.Screen
         name="Result"

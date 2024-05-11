@@ -18,8 +18,10 @@ import IconRate from './ic-rate.svg';
 import IconHelp from './ic-help.svg';
 import IconMale from './ic-male.svg';
 import IconFemale from './ic-female.svg';
+import IconX from './x.png';
 
 export {
+  IconX,
   IconBackDark,
   IconBackLight,
   IconAddPhoto,

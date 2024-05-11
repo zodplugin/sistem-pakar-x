@@ -1,13 +1,31 @@
 /* eslint-disable prettier/prettier */
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Button, FlatList, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { Profile } from '../../components';
-
+import AsyncStorage from '@react-native-community/async-storage';
 
 const ResultScreen = ({ route, navigation }) => {
-  const { result } = route.params;
-
+  const [result, setResult] = useState([]);
+  useEffect(() => {
+    const { result: routeResult } = route.params;
+    if (!routeResult) {
+      AsyncStorage.getItem('myResult')
+        .then((value) => {
+          if (value !== null) {
+            const retrievedArray = JSON.parse(value);
+            console.log('Retrieved myArray from AsyncStorage:', retrievedArray);
+            setResult(retrievedArray);
+          } else {
+            console.log('No myArray found in AsyncStorage');
+          }
+        })
+        .catch((error) => {
+          console.error('Error retrieving myArray from AsyncStorage:', error);
+        });
+    } else {
+      setResult(routeResult);
+    }
+  }, [route.params]);
   const pelayanan = [
     ['P001', 'Penanganan Pengaduan'],
     ['P002', 'Rehabilitasi Kesehatan Fisik'],
@@ -22,10 +40,11 @@ const ResultScreen = ({ route, navigation }) => {
     ['P011', 'Reintegrasi Sosial'],
   ];
 
-  const convertedResult = result.map((item) => {
+  const convertedResult = result ? result.map((item) => {
     const foundPelayanan = pelayanan.find((service) => service[0] === item);
     return foundPelayanan ? foundPelayanan : null;
-  });
+  }) : [];
+
 
   const renderItem = ({ item }) => {
     return (
