@@ -100,11 +100,13 @@ const QuestionsScreen = () => {
       { conditions: ['C004'], result: ['K004'] },
       { conditions: ['C005'], result: ['K005'] },
       { conditions: ['C006'], result: ['K006'] },
-      { conditions: ['K004'], result: ['P004'] },
-      { conditions: ['K003', 'K005', 'K006'], result: ['P006'] },
-      { conditions: ['K001', 'K002', 'K004'], result: ['P005'] },
-      { conditions: ['K001', 'K003', 'K004', 'K005', 'K006'], result: ['P003'] },
-      { conditions: ['K001', 'K002', 'K003', 'K004', 'K005', 'K006'], result: ['P001','P002','P004'] },
+      { conditions: ['K001'], result: ['K001','P001','P002','P003','P004','P005'] },
+      { conditions: ['K002'], result: ['K002','P001','P002','P004','P005'] },
+      { conditions: ['K003'], result: ['K003','P001','P002','P003','P004','P006'] },
+      { conditions: ['K004'], result: ['K004','P001','P002','P003','P004','P005'] },
+      { conditions: ['K005'], result: ['K005','P001','P002','P003','P004','P006'] },
+      { conditions: ['K006'], result: ['K006','P001','P002','P003','P004','P006'] },
+      
     ];
   
     while (true) {

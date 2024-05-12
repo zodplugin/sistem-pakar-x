@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   content: {
     flex:1,
     margin: 20,
-    paddingTop: 150,
+    paddingTop: 100,
   },
   title: {
     color: 'black',
