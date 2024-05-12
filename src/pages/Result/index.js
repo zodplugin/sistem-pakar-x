@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, ScrollView, SectionList } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
 import {Button} from '../../components';
@@ -62,6 +62,7 @@ const ResultScreen = ({ route, navigation }) => {
   });
 
   const renderItem = ({ item }) => {
+    console.log(item)
     return (
       <Card style={styles.cardItem}>
         <Text style={styles.cardText}>
@@ -76,6 +77,10 @@ const ResultScreen = ({ route, navigation }) => {
       {children}
     </View>
   );
+  const sections = [
+    { title: 'Kekerasan yang dialami Korban', data: convertedResultWithK },
+    { title: 'Pelayanan yang Tepat untuk Korban', data: convertedResultWithP }
+  ];
   return (
     <ScrollView contentContainerStyle={styles.scrollViewContent}>
       <View style={styles.container}>
@@ -84,18 +89,14 @@ const ResultScreen = ({ route, navigation }) => {
       </View>
       <View style={styles.content}>
         <Card>
-          <Text style={styles.title}>Kekerasan yang di alami Korban :</Text>
-          <FlatList
-            data={convertedResultWithK.filter((item) => item !== null)}
-            renderItem={renderItem}
-            keyExtractor={(item) => item[0]}
-          />
-          <Text style={styles.title}>Pelayanan yang Tepat untuk Korban :</Text>
-          <FlatList
-            data={convertedResultWithP.filter((item) => item !== null)}
-            renderItem={renderItem}
-            keyExtractor={(item) => item[0]}
-          />
+        <SectionList
+        sections={sections}
+        renderItem={({ item }) => renderItem({item})}
+        renderSectionHeader={({ section: { title } }) => (
+          <Text style={styles.sectionHeader}>{title}</Text>
+        )}
+        keyExtractor={(item, index) => index.toString()}
+      />
         </Card>
         <View style={styles.buttonContainer}>
           <Button style={{ paddingVertical: 20, }} title="  Jawab Ulang  " onPress={() => navigation.replace('Question')} />
@@ -136,6 +137,13 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 16,
     marginBottom: 10,
+  },
+  sectionHeader: {
+    fontSize: 18,
+    color: "black",
+    fontWeight: 'bold',
+    marginBottom: 5,
+    marginTop: 10,
   },
   card: {
     backgroundColor: '#f0f0f0',

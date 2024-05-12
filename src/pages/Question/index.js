@@ -72,12 +72,14 @@ const QuestionsScreen = () => {
   const handleSubmitAnswers = () => {
     if (isAllQuestionsAnswered()) {
       const trueKeys = Object.keys(answers).filter(key => answers[key]);
-      console.log(trueKeys);
       const result = forwardChaining(answers);
       const resultArray = Object.keys(result).filter(key => result[key]);
       const lastElement = resultArray[resultArray.length - 1];
+      console.log('test : ' + trueKeys);
+      console.log('result :' + resultArray)
+      console.log('tipe data : '+ typeof(result))
       const myArray = lastElement.split(",");
-      console.log(myArray)
+      console.log('split : ' + myArray)
       AsyncStorage.setItem('myResult', JSON.stringify(myArray))
       .then(() => {
         console.log('myArray is saved to AsyncStorage');
@@ -93,6 +95,41 @@ const QuestionsScreen = () => {
 
   function forwardChaining(facts) {
     let inferredFacts = {};
+    const defaultRules = [
+      { conditions: ['K001'], result: ['K001', 'P001', 'P002', 'P003', 'P004', 'P005'] },
+      { conditions: ['K002'], result: ['K002', 'P001', 'P002', 'P004', 'P005'] },
+      { conditions: ['K003'], result: ['K003', 'P001', 'P002', 'P003', 'P004', 'P006'] },
+      { conditions: ['K004'], result: ['K004', 'P001', 'P002', 'P003', 'P004', 'P005'] },
+      { conditions: ['K005'], result: ['K005', 'P001', 'P002', 'P003', 'P004', 'P006'] },
+      { conditions: ['K006'], result: ['K006', 'P001', 'P002', 'P003', 'P004', 'P006'] },
+    ];
+    
+    function generateCombinations(rules) {
+      const combinations = [];
+      const allConditions = ['K001', 'K002', 'K003', 'K004', 'K005', 'K006'];
+    
+      function generateCombinationsRecursive(currentConditions, currentResult) {
+        const combination = {
+          conditions: [...currentConditions],
+          result: [...currentResult],
+        };
+        combinations.push(combination);
+    
+        for (const condition of allConditions) {
+          if (!currentConditions.includes(condition)) {
+            const newConditions = [...currentConditions, condition];
+            const newResult = [...new Set([...currentResult, ...rules.find(rule => rule.conditions.includes(condition)).result])];
+            generateCombinationsRecursive(newConditions, newResult);
+          }
+        }
+      }
+    
+      generateCombinationsRecursive([], []);
+      return combinations;
+    }
+    
+    const kombinasi = generateCombinations(defaultRules);
+    
     const rules = [
       { conditions: ['C001'], result: ['K001'] },
       { conditions: ['C002'], result: ['K002'] },
@@ -100,63 +137,12 @@ const QuestionsScreen = () => {
       { conditions: ['C004'], result: ['K004'] },
       { conditions: ['C005'], result: ['K005'] },
       { conditions: ['C006'], result: ['K006'] },
-      { conditions: ['K001'], result: ['K001','P001','P002','P003','P004','P005'] },
-      { conditions: ['K002'], result: ['K002','P001','P002','P004','P005'] },
-      { conditions: ['K003'], result: ['K003','P001','P002','P003','P004','P006'] },
-      { conditions: ['K004'], result: ['K004','P001','P002','P003','P004','P005'] },
-      { conditions: ['K005'], result: ['K005','P001','P002','P003','P004','P006'] },
-      { conditions: ['K006'], result: ['K006','P001','P002','P003','P004','P006'] },
     ];
 
-  
-    function generateCombinations(startIndex, endIndex) {
-      const combinations = [];
-      
-      for (let i = startIndex; i <= endIndex; i++) {
-          const subCombinations = generateCombinationsHelper(0, [], i, []);
-          combinations.push(...subCombinations);
-      }
-  
-      return combinations;
-    }
-    
-    function generateCombinationsHelper(index, current, length, combinations) {
-        if (length === 0) {
-            combinations.push(current);
-            return combinations;
-        }
-        if (index === rules.length) {
-            return combinations;
-        }
-        const rule = rules[index];
-        const withCurrent = [...current, rule];
-        generateCombinationsHelper(index + 1, withCurrent, length - 1, combinations);
-        generateCombinationsHelper(index + 1, current, length, combinations);
-        return combinations;
-    }
-    
-    function combineResults(...args) {
-        const result = [];
-    
-        for (const arg of args) {
-            for (const res of arg) {
-                if (!result.includes(res)) {
-                    result.push(res);
-                }
-            }
-        }
-        return result;
-    }
-    const combinations = generateCombinations(0, rules.length - 1);
-    const newRules = combinations.map(combination => {
-        const conditions = combination.reduce((acc, val) => acc.concat(val.conditions), []);
-        const result = combineResults(...combination.map(c => c.result));
-        return { conditions, result };
-    });
-    rules.push(...newRules);
-    
-    console.log(rules);
-    
+    rules.push(...kombinasi);
+
+
+
   
     while (true) {
       let newInferences = false;
