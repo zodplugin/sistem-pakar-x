@@ -38,11 +38,8 @@ const MainApp = ({route}) => {
     //   <Drawer.Screen name="Notifications" component={Messages} />
     // </Drawer.Navigator>
     <Tab.Navigator tabBar={props => <BottomNavigator {...props} />}>
-      <Tab.Screen name={'Result'} component={Result} initialParams={{result: hasil}}/>
-      {/* <Tab.Screen name="Profile" component={UserProfile} /> */}
-      <Tab.Screen name="Doctor" component={Doctor} />
-      <Tab.Screen name="Messages" component={Messages} />
-      <Tab.Screen name="Hospitals" component={Hospitals} />
+      <Tab.Screen name='Result' component={Result} initialParams={{result: hasil}}/>
+      <Tab.Screen name="Profile" component={UserProfile} />
     </Tab.Navigator>
   );
 };
@@ -73,7 +70,7 @@ const Router = () => {
       <Stack.Screen
         name="Result"
         component={Result}
-        options={{headerShown: false}}
+        options={{headerShown: true}}
       />
       <Stack.Screen
         name="Register"
@@ -108,7 +105,7 @@ const Router = () => {
       <Stack.Screen
         name="UserProfile"
         component={UserProfile}
-        options={{headerShown: false}}
+        options={{headerShown: true}}
       />
       <Stack.Screen
         name="UpdateProfile"

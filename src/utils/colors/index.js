@@ -26,8 +26,8 @@ export const colors = {
   text: {
     primary: mainColors.pink2,
     secondary: mainColors.grey1,
-    menuInactive: 'white',
-    menuActive: mainColors.pink2,
+    menuInactive: mainColors.dark2,
+    menuActive: mainColors.green1,
     subTitle: mainColors.dark3,
   },
   button: {

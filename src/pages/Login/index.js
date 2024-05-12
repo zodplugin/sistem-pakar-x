@@ -1,7 +1,7 @@
 import React from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View, Image} from 'react-native';
 import {useDispatch} from 'react-redux';
-import {ILLogo} from '../../assets';
+import {IconX} from '../../assets';
 import {Button, Gap, Input, Link} from '../../components';
 import {Fire} from '../../config';
 import {colors, fonts, showError, storeData, useForm} from '../../utils';
@@ -36,8 +36,11 @@ const Login = ({navigation}) => {
     <View style={styles.page}>
       <ScrollView showsVerticalScrollIndicator={false}>
         <Gap height={40} />
-        <ILLogo />
-        <Text style={styles.title}>Masuk dan mulai berkonsultasi</Text>
+        <Image
+          style={{ height:100, width:100, borderRadius:100 }}
+          source={IconX}
+        />
+        <Text style={styles.title}></Text>
         <Input
           label="Email Address"
           value={form.email}

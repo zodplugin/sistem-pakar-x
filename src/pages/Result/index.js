@@ -1,9 +1,9 @@
 /* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Button, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
-
+import {Button} from '../../components';
 const ResultScreen = ({ route, navigation }) => {
   const [result, setResult] = useState([]);
   useEffect(() => {
@@ -27,17 +27,18 @@ const ResultScreen = ({ route, navigation }) => {
     }
   }, [route.params]);
   const pelayanan = [
-    ['P001', 'Penanganan Pengaduan'],
-    ['P002', 'Rehabilitasi Kesehatan Fisik'],
-    ['P003', 'Rehabilitasi Kesehatan Psikis'],
-    ['P004', 'Rehabilitasi Kesehatan Reproduksi'],
-    ['P005', 'Pelayanan Medik Spesialistik Dasar'],
-    ['P006', 'Pelayanan Medik Spesialistik Lanjutan'],
-    ['P007', 'Rehabilitasi Sosial'],
-    ['P008', 'Penegakan Hukum'],
-    ['P009', 'Bantuan Hukum'],
-    ['P010', 'Pemulangan'],
-    ['P011', 'Reintegrasi Sosial'],
+    ['P001', 'Pengaduan Masyarakat'],
+    ['P002', 'Penjangkauan Korban'],
+    ['P003', 'Pengelolaan Kasus'],
+    ['P004', 'Pendampingan Korban'],
+    ['P005', 'Mediasi'],
+    ['P006', 'Penampungan Sementara'],
+    ['K001', 'Kekerasan fisik'],
+    ['K002', 'Kekerasan psikologis'],
+    ['K003', 'Kekerasan ekonomi'],
+    ['K004', 'Kekerasan seksual'],
+    ['K005', 'Perdagangan Orang'],
+    ['K006', 'Eksploitasi'],
   ];
 
   const convertedResult = result ? result.map((item) => {
@@ -48,7 +49,7 @@ const ResultScreen = ({ route, navigation }) => {
 
   const renderItem = ({ item }) => {
     return (
-      <Card>
+      <Card style={styles.cardItem}>
         <Text style={styles.cardText}>
           {item ? `${item[0]} - ${item[1]}` : 'Tidak ditemukan'}
         </Text>
@@ -61,9 +62,13 @@ const ResultScreen = ({ route, navigation }) => {
       {children}
     </View>
   );
-
   return (
+   
     <View style={styles.container}>
+     <View style={styles.header}>
+        <Text style={styles.headerText}>Result</Text>
+    </View>
+    <View style={styles.content}>
       <Card>
         <Text style={styles.title}>Kode:</Text>
         <Text style={styles.result}>{result.join(', ')}</Text>
@@ -75,8 +80,9 @@ const ResultScreen = ({ route, navigation }) => {
         />
       </Card>
       <View style={styles.buttonContainer}>
-        <Button title="Next" onPress={() => console.log("Next button pressed")} />
+        <Button style={{ paddingVertical: 20, }} title="  Jawab Ulang  " onPress={() => navigation.replace('Question')} />
       </View>
+    </View>
     </View>
   );
 };
@@ -84,9 +90,6 @@ const ResultScreen = ({ route, navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: 20,
   },
   navbar: {
     flexDirection: 'row',
@@ -96,6 +99,11 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 10,
     backgroundColor: '#f0f0f0',
+  },
+  content: {
+    flex:1,
+    margin: 20,
+    paddingTop: 150,
   },
   title: {
     color: 'black',
@@ -116,11 +124,26 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   cardText: {
-    color: 'black',
+    color: 'white',
+    backgroundColor: '#BB2380',
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    marginVertical:-15,
+    borderRadius: 12,
     fontSize: 16,
   },
   buttonContainer: {
     marginTop: 20,
+  },
+  header: {
+    backgroundColor: '#BB2380',
+    padding: 16,
+    alignItems: 'center',
+  },
+  headerText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: 'white',
   },
 });
 

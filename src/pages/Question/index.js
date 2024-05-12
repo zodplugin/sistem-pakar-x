@@ -35,11 +35,11 @@ const QuestionsScreen = () => {
   };
   const questions = [
     {
-      question: 'Apakah Anda pernah mengalami  ciri - ciri seperti Memukul,menampar, mencekik, menendang, penjambakan, mendorong secara kasar, penginjakan, gigitan, cubitan, melempar barang ke tubuh korban, melukai dengan tangan kosong atau alat/senjata seperti rotan, ikat pinggang, kayu, besi, sundutan rokok, penyiksaan menggunakan benda tajam?',
+      question: 'Apakah Anda pernah mengalami  ciri - ciri seperti Memukul,menampar, mencekik, menendang, penjambakan, mendorong secara kasar, penginjakan, gigitan, cubitan, melempar barang ke tubuh korban, melukai dengan tangan kosong atau alat/senjata seperti rotan, ikat pinggang, kayu, besi, sundutan rokok, penyiksaan menggunakan benda tajam, seperti : pisau, gunting, setrika serta pembakaran, membunuh ?',
       code: 'C001',
     },
     {
-      question: 'Apakah Anda pernah mengalami ciri - ciri seperti Perbuatan dan ucapan yang mengakibatkan ketakutan, hilangnya rasa percaya diri, hilangnya kemampuan untuk bertindak, dan rasa tidak berdaya, seperti berteriak-teriak, mengancam, merendahkan, membentak, ucapan kata-kata kotor, menyalahkan, melabeli, atau juga mengkambinghitamkan, menyumpah serapah, melecehkan, menguntit, dan memata-matai serta tindak-tindakan lain yang menimbulkan rasa takut yang ditujukan kepada korban, merendahkan keyakinan dan kepercayaan korban, memaksa ?',
+      question: 'Apakah Anda pernah mengalami ciri - ciri seperti Perbuatan dan ucapan yang mengakibatkan ketakutan, hilangnya rasa percaya diri, hilangnya kemampuan untuk bertindak, dan rasa tidak berdaya, seperti berteriak - teriak, mengancam, merendahkan, membentak, ucapan kata-kata kotor, menyalahkan, melabeli, atau juga mengkambinghitamkan, menyumpah serapah, melecehkan, menguntit, dan memata -matai serta tindak-tindakan lain yang menimbulkan rasa takut yang ditujukan kepada korban, merendahkan keyakinan dan kepercayaan korban, memaksa korban mempraktekan ritual dan keyakinan tertentu dan lain-lain ?',
       code: 'C002',
     },
     {
@@ -101,13 +101,10 @@ const QuestionsScreen = () => {
       { conditions: ['C005'], result: ['K005'] },
       { conditions: ['C006'], result: ['K006'] },
       { conditions: ['K004'], result: ['P004'] },
-      { conditions: ['K001', 'K004'], result: ['P002'] },
-      { conditions: ['K005', 'K006'], result: ['P005'] },
-      { conditions: ['K004', 'K006'], result: ['P007'] },
-      { conditions: ['K005', 'K006'], result: ['P010'] },
-      { conditions: ['K004', 'K006'], result: ['P011'] },
-      { conditions: ['K001', 'K002', 'K003', 'K004'], result: ['P008','P009'] },
-      { conditions: ['K001', 'K002', 'K003', 'K004', 'K005', 'K006'], result: ['P001','P003'] },
+      { conditions: ['K003', 'K005', 'K006'], result: ['P006'] },
+      { conditions: ['K001', 'K002', 'K004'], result: ['P005'] },
+      { conditions: ['K001', 'K003', 'K004', 'K005', 'K006'], result: ['P003'] },
+      { conditions: ['K001', 'K002', 'K003', 'K004', 'K005', 'K006'], result: ['P001','P002','P004'] },
     ];
   
     while (true) {

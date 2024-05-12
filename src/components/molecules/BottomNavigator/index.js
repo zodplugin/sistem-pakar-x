@@ -56,8 +56,8 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: 53,
-    paddingVertical: 12,
-    backgroundColor: colors.primary,
+    paddingHorizontal: 80,
+    paddingVertical: 15,
+    backgroundColor: '#112340',
   },
 });
