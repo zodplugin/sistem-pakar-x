@@ -106,8 +106,57 @@ const QuestionsScreen = () => {
       { conditions: ['K004'], result: ['K004','P001','P002','P003','P004','P005'] },
       { conditions: ['K005'], result: ['K005','P001','P002','P003','P004','P006'] },
       { conditions: ['K006'], result: ['K006','P001','P002','P003','P004','P006'] },
-      
     ];
+
+  
+    function generateCombinations(startIndex, endIndex) {
+      const combinations = [];
+      
+      for (let i = startIndex; i <= endIndex; i++) {
+          const subCombinations = generateCombinationsHelper(0, [], i, []);
+          combinations.push(...subCombinations);
+      }
+  
+      return combinations;
+    }
+    
+    function generateCombinationsHelper(index, current, length, combinations) {
+        if (length === 0) {
+            combinations.push(current);
+            return combinations;
+        }
+        if (index === rules.length) {
+            return combinations;
+        }
+        const rule = rules[index];
+        const withCurrent = [...current, rule];
+        generateCombinationsHelper(index + 1, withCurrent, length - 1, combinations);
+        generateCombinationsHelper(index + 1, current, length, combinations);
+        return combinations;
+    }
+    
+    function combineResults(...args) {
+        const result = [];
+    
+        for (const arg of args) {
+            for (const res of arg) {
+                if (!result.includes(res)) {
+                    result.push(res);
+                }
+            }
+        }
+        return result;
+    }
+    const combinations = generateCombinations(0, rules.length - 1);
+    const newRules = combinations.map(combination => {
+        const conditions = combination.reduce((acc, val) => acc.concat(val.conditions), []);
+        const result = combineResults(...combination.map(c => c.result));
+        return { conditions, result };
+    });
+    rules.push(...newRules);
+    
+    console.log(rules);
+    
   
     while (true) {
       let newInferences = false;

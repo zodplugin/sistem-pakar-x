@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, ScrollView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
 import {Button} from '../../components';
@@ -40,18 +40,32 @@ const ResultScreen = ({ route, navigation }) => {
     ['K005', 'Perdagangan Orang'],
     ['K006', 'Eksploitasi'],
   ];
+  const resultWithK = [];
+  const resultWithP = [];
 
-  const convertedResult = result ? result.map((item) => {
+  result.forEach((item) => {
+    if (item.startsWith('K')) {
+      resultWithK.push(item);
+    } else if (item.startsWith('P')) {
+      resultWithP.push(item);
+    }
+  });
+  
+  const convertedResultWithK = resultWithK.map((item) => {
     const foundPelayanan = pelayanan.find((service) => service[0] === item);
     return foundPelayanan ? foundPelayanan : null;
-  }) : [];
-
+  });
+  
+  const convertedResultWithP = resultWithP.map((item) => {
+    const foundPelayanan = pelayanan.find((service) => service[0] === item);
+    return foundPelayanan ? foundPelayanan : null;
+  });
 
   const renderItem = ({ item }) => {
     return (
       <Card style={styles.cardItem}>
         <Text style={styles.cardText}>
-          {item ? `${item[0]} - ${item[1]}` : 'Tidak ditemukan'}
+          {item ? `${item[1]}` : 'Tidak ditemukan'}
         </Text>
       </Card>
     );
@@ -63,31 +77,39 @@ const ResultScreen = ({ route, navigation }) => {
     </View>
   );
   return (
-   
-    <View style={styles.container}>
-     <View style={styles.header}>
-        <Text style={styles.headerText}>Result</Text>
-    </View>
-    <View style={styles.content}>
-      <Card>
-        <Text style={styles.title}>Kode:</Text>
-        <Text style={styles.result}>{result.join(', ')}</Text>
-        <Text style={styles.title}>Hasil:</Text>
-        <FlatList
-          data={convertedResult.filter((item) => item !== null)}
-          renderItem={renderItem}
-          keyExtractor={(item) => item[0]}
-        />
-      </Card>
-      <View style={styles.buttonContainer}>
-        <Button style={{ paddingVertical: 20, }} title="  Jawab Ulang  " onPress={() => navigation.replace('Question')} />
+    <ScrollView contentContainerStyle={styles.scrollViewContent}>
+      <View style={styles.container}>
+      <View style={styles.header}>
+          <Text style={styles.headerText}>Result</Text>
       </View>
-    </View>
-    </View>
+      <View style={styles.content}>
+        <Card>
+          <Text style={styles.title}>Kekerasan yang di alami Korban :</Text>
+          <FlatList
+            data={convertedResultWithK.filter((item) => item !== null)}
+            renderItem={renderItem}
+            keyExtractor={(item) => item[0]}
+          />
+          <Text style={styles.title}>Pelayanan yang Tepat untuk Korban :</Text>
+          <FlatList
+            data={convertedResultWithP.filter((item) => item !== null)}
+            renderItem={renderItem}
+            keyExtractor={(item) => item[0]}
+          />
+        </Card>
+        <View style={styles.buttonContainer}>
+          <Button style={{ paddingVertical: 20, }} title="  Jawab Ulang  " onPress={() => navigation.replace('Question')} />
+        </View>
+      </View>
+      </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  scrollViewContent: {
+    flexGrow: 1,
+  },
   container: {
     flex: 1,
   },
@@ -103,7 +125,6 @@ const styles = StyleSheet.create({
   content: {
     flex:1,
     margin: 20,
-    paddingTop: 25,
   },
   title: {
     color: 'black',
