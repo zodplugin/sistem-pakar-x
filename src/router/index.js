@@ -16,6 +16,7 @@ import {
   UpdateProfile,
   DoctorProfile,
   News,
+  Dashboard,
   Question,
   Result,
 } from '../pages';
@@ -47,6 +48,11 @@ const MainApp = ({route}) => {
 const Router = () => {
   return (
     <Stack.Navigator initialRouteName="Splash">
+      <Stack.Screen
+        name="Dashboard"
+        component={Dashboard}
+        options={{headerShown: false}}
+      />
       <Stack.Screen
         name="Profile"
         component={Profile}

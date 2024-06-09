@@ -14,6 +14,7 @@ import DoctorProfile from './DoctorProfile';
 import News from './News';
 import Question from './Question';
 import Result from './Result'
+import Dashboard from './Dashboard';
 
 export {
   Splash,
@@ -32,4 +33,5 @@ export {
   News,
   Question,
   Result,
+  Dashboard,
 };
