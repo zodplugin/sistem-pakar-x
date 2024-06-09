@@ -19,6 +19,7 @@ import {
   Dashboard,
   Question,
   Result,
+  ListGejala
 } from '../pages';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {BottomNavigator, Profile} from '../components';
@@ -54,6 +55,11 @@ const Router = () => {
         options={{headerShown: false}}
       />
       <Stack.Screen
+        name="ListGejala"
+        component={ListGejala}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
         name="Profile"
         component={Profile}
         options={{headerShown: false}}
@@ -71,12 +77,12 @@ const Router = () => {
       <Stack.Screen
         name="Question"
         component={Question}
-        options={{headerShown: true}}
+        options={{headerShown: false}}
       />
       <Stack.Screen
         name="Result"
         component={Result}
-        options={{headerShown: true}}
+        options={{headerShown: false}}
       />
       <Stack.Screen
         name="Register"

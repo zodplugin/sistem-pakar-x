@@ -1,9 +1,9 @@
 import {React, useState, useEffect} from 'react';
-import {StyleSheet, View, Text} from 'react-native';
+import {StyleSheet, View, Text, Image} from 'react-native';
 import {Gap, Header, List, Profile} from '../../components';
 import {Fire} from '../../config';
 import {showError, getData} from '../../utils';
-import {ILNullPhoto} from '../../assets';
+import {ILNullPhoto, IconX} from '../../assets';
 
 const UserProfile = ({navigation, route}) => {
   const [profile, setProfile] = useState({
@@ -56,7 +56,11 @@ const UserProfile = ({navigation, route}) => {
   return (
     <View style={styles.page}>
       <View style={styles.header}>
-        <Text style={styles.headerText}>Profile</Text>
+        <Image
+          style={{ height:40, width:40, borderRadius:100 }}
+          source={IconX}
+        />
+        <Text style={styles.headerText}>Dashboard</Text>
       </View>
       <Gap height={10} />
       {profile.fullName.length > 0 && (
@@ -102,13 +106,15 @@ export default UserProfile;
 const styles = StyleSheet.create({
   page: {flex: 1, backgroundColor: 'white'},
   header: {
-    backgroundColor: '#BB2380', 
-    padding: 16,
+    flexDirection: 'row',
+    gap:20,
+    backgroundColor: '#BB2380',
+    padding: 20,
     alignItems: 'center',
   },
   headerText: {
+    color: '#FFFFFF',
     fontSize: 18,
     fontWeight: 'bold',
-    color: 'white',
   },
 });

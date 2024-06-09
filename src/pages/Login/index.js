@@ -22,7 +22,7 @@ const Login = ({navigation}) => {
           .then(resDB => {
             if (resDB.val()) {
               storeData('user', resDB.val());
-              navigation.replace('Question');
+              navigation.replace('Dashboard');
             }
           });
       })

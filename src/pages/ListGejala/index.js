@@ -1,20 +1,10 @@
 /* eslint-disable prettier/prettier */
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image, StatusBar } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, StatusBar,Card } from 'react-native';
 import {Fire} from '../../config';
 import {showError} from '../../utils';
 import {IconX} from '../../assets';
-const Dashboard = ({navigation}) => {
-    const signOut = () => {
-        Fire.auth()
-          .signOut()
-          .then(() => {
-            navigation.replace('GetStarted');
-          })
-          .catch(err => {
-            showError(err.message);
-          });
-      };
+const ListGejala = ({navigation}) => {
     return (
         <View style={styles.container}>
           <View style={styles.header}>
@@ -22,25 +12,29 @@ const Dashboard = ({navigation}) => {
               style={{ height:40, width:40, borderRadius:100 }}
               source={IconX}
             />
-            <Text style={styles.headerText}>Dashboard</Text>
+            <Text style={styles.headerText}>List Layanan Kekerasan</Text>
           </View>
           <View style={styles.content}>
-            <TouchableOpacity style={styles.button}  onPress={() => navigation.navigate('Question')}>
-              {/* <Image source={require('./assets/diagnose.png')} style={styles.icon} /> */}
-              <Text style={styles.buttonText}>Diagnosa</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button}  onPress={() => navigation.navigate('ListGejala')}>
-              {/* <Image source={require('./assets/disease.png')} style={styles.icon} /> */}
-              <Text style={styles.buttonText}>Gejala dan Layanan Kekerasan</Text>
-            </TouchableOpacity>
+            <Text style={styles.cardText}>
+                Test
+            </Text>
           </View>
-          <TouchableOpacity style={styles.logoutButton} onPress={signOut}>
-            <Text style={styles.logoutButtonText}>Logout</Text>
+          <TouchableOpacity style={styles.logoutButton} onPress={() => navigation.navigate('Dashboard')}>
+            <Text style={styles.logoutButtonText}>Kembali</Text>
           </TouchableOpacity>
         </View>
     );
 }
 const styles = StyleSheet.create({
+  cardText: {
+    color: 'white',
+    backgroundColor: '#BB2380',
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    marginVertical:-15,
+    borderRadius: 12,
+    fontSize: 16,
+  },
     container: {
       flex: 1,
       backgroundColor: '#FFFFFF',
@@ -94,4 +88,4 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
     },
   });
-export default Dashboard;
+export default ListGejala;

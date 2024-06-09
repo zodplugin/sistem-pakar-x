@@ -1,9 +1,10 @@
 /* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity, ScrollView, SectionList } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, ScrollView, SectionList,Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
 import {Button} from '../../components';
+import {IconX} from '../../assets';
 const ResultScreen = ({ route, navigation }) => {
   const [result, setResult] = useState([]);
   useEffect(() => {
@@ -62,7 +63,6 @@ const ResultScreen = ({ route, navigation }) => {
   });
 
   const renderItem = ({ item }) => {
-    console.log(item)
     return (
       <Card style={styles.cardItem}>
         <Text style={styles.cardText}>
@@ -78,19 +78,30 @@ const ResultScreen = ({ route, navigation }) => {
     </View>
   );
   const sections = [
-    { title: 'Kekerasan yang dialami Korban', data: convertedResultWithK },
+    { title: 'Kekerasan yang dialami Korban', data: convertedResultWithK  },
     { title: 'Pelayanan yang Tepat untuk Korban', data: convertedResultWithP }
   ];
+  const sectionsNull = [
+    { title: 'Kekerasan yang dialami Korban', data: [["","Tidak Ditemukan"]]  },
+    { title: 'Pelayanan yang Tepat untuk Korban', data: [["","Tidak Ditemukan"]] }
+  ];
+  
   return (
+    <View>
+      <View style={styles.header}>
+        <Image
+          style={{ height:40, width:40, borderRadius:100 }}
+          source={IconX}
+        />
+        <Text style={styles.headerText}>Dashboard</Text>
+      </View>
     <ScrollView contentContainerStyle={styles.scrollViewContent}>
       <View style={styles.container}>
-      <View style={styles.header}>
-          <Text style={styles.headerText}>Result</Text>
-      </View>
+      
       <View style={styles.content}>
         <Card>
         <SectionList
-        sections={sections}
+        sections={resultWithK.length != 0 && resultWithP.length != 0 ? sections : sectionsNull}
         renderItem={({ item }) => renderItem({item})}
         renderSectionHeader={({ section: { title } }) => (
           <Text style={styles.sectionHeader}>{title}</Text>
@@ -99,15 +110,29 @@ const ResultScreen = ({ route, navigation }) => {
       />
         </Card>
         <View style={styles.buttonContainer}>
-          <Button style={{ paddingVertical: 20, }} title="  Jawab Ulang  " onPress={() => navigation.replace('Question')} />
+          <Button style={{ paddingVertical: 20, marginBottom:30,}} title="  Jawab Ulang  " onPress={() => navigation.replace('Question')} />
+          <Button style={{ paddingVertical: 20, marginTop: 30,}} title="Kembali Ke Dashboard" onPress={() => navigation.replace('Dashboard')} />
         </View>
       </View>
       </View>
     </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  header: {
+      flexDirection: 'row',
+      gap:20,
+      backgroundColor: '#BB2380',
+      padding: 20,
+      alignItems: 'center',
+  },
+  headerText: {
+    color: '#FFFFFF',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
   scrollViewContent: {
     flexGrow: 1,
   },
@@ -162,17 +187,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   buttonContainer: {
-    marginTop: 20,
-  },
-  header: {
-    backgroundColor: '#BB2380',
-    padding: 16,
-    alignItems: 'center',
-  },
-  headerText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: 'white',
+    marginTop: 30,
+    gap:10,
   },
 });
 

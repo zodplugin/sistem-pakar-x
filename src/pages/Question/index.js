@@ -6,33 +6,34 @@ import {
   TouchableOpacity,
   StyleSheet,
   ScrollView,
+  Image
 } from 'react-native';
 import {Button} from '../../components';
 import {RadioButton} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
-import {ILNullPhoto} from '../../assets';
+import {ILNullPhoto,IconX} from '../../assets';
 import {getData, storeData} from '../../utils';
 import AsyncStorage from '@react-native-community/async-storage';
 const QuestionsScreen = () => {
   const navigation = useNavigation();
   const [answers, setAnswers] = useState({});
-  const [profile, setProfile] = useState({
-    photo: ILNullPhoto,
-    fullName: '',
-    profession: '',
-  });
-  useEffect(() => {
-    navigation.addListener('focus', () => {
-      getUserData();
-    });
-  }, [navigation]);
-  const getUserData = () => {
-    getData('user').then(res => {
-      const data = res;
-      data.photo = res?.photo?.length > 1 ? {uri: res.photo} : ILNullPhoto;
-      setProfile(res);
-    });
-  };
+  // const [profile, setProfile] = useState({
+  //   photo: ILNullPhoto,
+  //   fullName: '',
+  //   profession: '',
+  // });
+  // useEffect(() => {
+  //   navigation.addListener('focus', () => {
+  //     getUserData();
+  //   });
+  // }, [navigation]);
+  // const getUserData = () => {
+  //   getData('user').then(res => {
+  //     const data = res;
+  //     data.photo = res?.photo?.length > 1 ? {uri: res.photo} : ILNullPhoto;
+  //     setProfile(res);
+  //   });
+  // };
   const questions = [
     {
       question: 'Apakah Anda pernah mengalami  ciri - ciri seperti Memukul,menampar, mencekik, menendang, penjambakan, mendorong secara kasar, penginjakan, gigitan, cubitan, melempar barang ke tubuh korban, melukai dengan tangan kosong atau alat/senjata seperti rotan, ikat pinggang, kayu, besi, sundutan rokok, penyiksaan menggunakan benda tajam, seperti : pisau, gunting, setrika serta pembakaran, membunuh ?',
@@ -172,7 +173,15 @@ const QuestionsScreen = () => {
   
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Image
+          style={{ height:40, width:40, borderRadius:100 }}
+          source={IconX}
+        />
+        <Text style={styles.headerText}>Question</Text>
+      </View>
+      <ScrollView contentContainerStyle={styles.container1}>
       {questions.map(({question, code}) => (
         <View key={code} style={styles.questionContainer}>
           <Text style={styles.questionText}>{question}</Text>
@@ -198,17 +207,39 @@ const QuestionsScreen = () => {
           </TouchableOpacity>
         </View>
       ))}
+    </ScrollView>
+    <View style={styles.footer}>
       <Button
         title="Selesai Menjawab"
         onPress={handleSubmitAnswers}
         disabled={!isAllQuestionsAnswered()}
       />
-    </ScrollView>
+    </View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  footer :{
+    padding:20,
+  },
   container: {
+    flex: 1,
+    backgroundColor: '#FFFFFF',
+  },
+  header: {
+    flexDirection: 'row',
+    gap:20,
+    backgroundColor: '#BB2380',
+    padding: 20,
+    alignItems: 'center',
+  },
+  headerText: {
+    color: '#FFFFFF',
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  container1: {
     flexGrow: 1,
     padding: 20,
   },
@@ -218,7 +249,7 @@ const styles = StyleSheet.create({
   questionText: {
     fontSize: 18,
     marginBottom: 10,
-    color: 'blue',
+    color: 'black',
     textAlign:'justify',
   },
   optionContainer: {
