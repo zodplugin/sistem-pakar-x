@@ -38,7 +38,7 @@ const UploadPhoto = ({navigation, route}) => {
 
     storeData('user', data);
 
-    navigation.replace('Question');
+    navigation.replace('Dashboard');
   };
   return (
     <View style={styles.page}>
@@ -64,7 +64,7 @@ const UploadPhoto = ({navigation, route}) => {
             title="Skip for this"
             align="center"
             size={16}
-            onPress={() => navigation.replace('Question')}
+            onPress={() => navigation.replace('Dashboard')}
           />
         </View>
       </View>

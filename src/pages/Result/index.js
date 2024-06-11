@@ -36,7 +36,7 @@ const ResultScreen = ({ route, navigation }) => {
     ['P006', 'Penampungan Sementara'],
     ['K001', 'Kekerasan fisik'],
     ['K002', 'Kekerasan psikologis'],
-    ['K003', 'Kekerasan ekonomi'],
+    ['K003', 'Penelantaran '],
     ['K004', 'Kekerasan seksual'],
     ['K005', 'Perdagangan Orang'],
     ['K006', 'Eksploitasi'],
@@ -97,23 +97,22 @@ const ResultScreen = ({ route, navigation }) => {
       </View>
     <ScrollView contentContainerStyle={styles.scrollViewContent}>
       <View style={styles.container}>
-      
-      <View style={styles.content}>
-        <Card>
-        <SectionList
-        sections={resultWithK.length != 0 && resultWithP.length != 0 ? sections : sectionsNull}
-        renderItem={({ item }) => renderItem({item})}
-        renderSectionHeader={({ section: { title } }) => (
-          <Text style={styles.sectionHeader}>{title}</Text>
-        )}
-        keyExtractor={(item, index) => index.toString()}
-      />
-        </Card>
-        <View style={styles.buttonContainer}>
-          <Button style={{ paddingVertical: 20, marginBottom:30,}} title="  Jawab Ulang  " onPress={() => navigation.replace('Question')} />
-          <Button style={{ paddingVertical: 20, marginTop: 30,}} title="Kembali Ke Dashboard" onPress={() => navigation.replace('Dashboard')} />
+        <View style={styles.content}>
+          <Card>
+              <SectionList
+              sections={resultWithK.length != 0 && resultWithP.length != 0 ? sections : sectionsNull}
+              renderItem={({ item }) => renderItem({item})}
+              renderSectionHeader={({ section: { title } }) => (
+                <Text style={styles.sectionHeader}>{title}</Text>
+              )}
+              keyExtractor={(item, index) => index.toString()}
+            />
+          </Card>
+          <View style={styles.buttonContainer}>
+            <Button  title="Kembali Ke Dashboard" onPress={() => navigation.replace('Dashboard')} />
+            <Button  title="  Jawab Ulang  " onPress={() => navigation.replace('Question')} />
+          </View>
         </View>
-      </View>
       </View>
     </ScrollView>
     </View>
@@ -187,7 +186,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   buttonContainer: {
-    marginTop: 30,
+    marginVertical: 100,
     gap:10,
   },
 });
