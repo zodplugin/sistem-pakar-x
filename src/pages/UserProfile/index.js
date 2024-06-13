@@ -4,7 +4,7 @@ import {Gap, Header, List, Profile} from '../../components';
 import {Fire} from '../../config';
 import {showError, getData} from '../../utils';
 import {ILNullPhoto, IconX} from '../../assets';
-
+import AsyncStorage from '@react-native-community/async-storage';
 const UserProfile = ({navigation, route}) => {
   const [profile, setProfile] = useState({
     photo: ILNullPhoto,
@@ -43,10 +43,11 @@ const UserProfile = ({navigation, route}) => {
     fetchData();
   }, [route.params, navigation]);
 
-  const signOut = () => {
+  const signOut =  () => {
     Fire.auth()
       .signOut()
-      .then(() => {
+      .then(async () => {
+        await AsyncStorage.removeItem('userCredentials');
         navigation.replace('GetStarted');
       })
       .catch(err => {

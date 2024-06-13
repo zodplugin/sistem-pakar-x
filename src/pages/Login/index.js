@@ -5,6 +5,11 @@ import {IconX} from '../../assets';
 import {Button, Gap, Input, Link} from '../../components';
 import {Fire} from '../../config';
 import {colors, fonts, showError, storeData, useForm} from '../../utils';
+import AsyncStorage from '@react-native-community/async-storage';
+import {encrypt} from 'react-native-simple-encryption';
+
+const SECRET_KEY = 'babaay0000'; // You should use a more secure key in a real app
+
 
 const Login = ({navigation}) => {
   const [form, setForm] = useForm({email: '', password: ''});
@@ -14,8 +19,14 @@ const Login = ({navigation}) => {
     dispatch({type: 'SET_LOADING', value: true});
     Fire.auth()
       .signInWithEmailAndPassword(form.email, form.password)
-      .then(res => {
+      .then(async res => {
         dispatch({type: 'SET_LOADING', value: false});
+        const encryptedPassword = encrypt(SECRET_KEY, form.password);
+        const email = form.email;
+        await AsyncStorage.setItem(
+          'userCredentials',
+          JSON.stringify({email, password: encryptedPassword}),
+        );
         Fire.database()
           .ref(`users/${res.user.uid}/`)
           .once('value')

@@ -4,11 +4,13 @@ import { StyleSheet, Text, View, TouchableOpacity, Image, StatusBar } from 'reac
 import {Fire} from '../../config';
 import {showError} from '../../utils';
 import {IconX} from '../../assets';
+import AsyncStorage from '@react-native-community/async-storage';
 const Dashboard = ({navigation}) => {
     const signOut = () => {
         Fire.auth()
           .signOut()
-          .then(() => {
+          .then(async () => {
+            await AsyncStorage.removeItem('userCredentials');
             navigation.replace('GetStarted');
           })
           .catch(err => {

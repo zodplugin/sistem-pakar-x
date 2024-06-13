@@ -6,6 +6,9 @@ import {Loading} from './components';
 import store from './redux/store';
 import Router from './router';
 import {LogBox} from 'react-native';
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import {Fire} from './config';
 
 const MainApp = () => {
   const stateGlobal = useSelector(state => state);
