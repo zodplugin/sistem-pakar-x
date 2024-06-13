@@ -4,6 +4,9 @@ import {useDispatch} from 'react-redux';
 import {Button, Gap, Header, Input} from '../../components';
 import {Fire} from '../../config';
 import {fonts, colors, showError, storeData, useForm} from '../../utils';
+import AsyncStorage from '@react-native-community/async-storage';
+import {encrypt} from 'react-native-simple-encryption';
+const SECRET_KEY = 'babaay0000'; // You should use a more secure key in a real app
 
 const Register = ({navigation}) => {
   const dispatch = useDispatch();
@@ -18,7 +21,7 @@ const Register = ({navigation}) => {
     dispatch({type: 'SET_LOADING', value: true});
     Fire.auth()
       .createUserWithEmailAndPassword(form.email, form.password)
-      .then(success => {
+      .then(async success => {
         dispatch({type: 'SET_LOADING', value: false});
         setForm('reset');
         const data = {
@@ -27,12 +30,15 @@ const Register = ({navigation}) => {
           email: form.email,
           uid: success.user.uid,
         };
-        console.log(success);
         Fire.database()
           .ref('users/' + success.user.uid + '/')
           .set(data);
-
-        console.log('test');
+        const encryptedPassword = encrypt(SECRET_KEY, form.password);
+        const email = form.email;
+        await AsyncStorage.setItem(
+          'userCredentials',
+          JSON.stringify({email, password: encryptedPassword}),
+        );
         storeData('user', data);
         navigation.navigate('UploadPhoto', data);
       })

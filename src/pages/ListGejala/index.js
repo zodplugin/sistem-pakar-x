@@ -11,13 +11,16 @@ const pelayanan = [
   ['P004', 'Pendampingan Korban'],
   ['P005', 'Mediasi'],
   ['P006', 'Penampungan Sementara'],
+];
+
+const kekerasan = [
   ['K001', 'Kekerasan fisik'],
   ['K002', 'Kekerasan psikologis'],
   ['K003', 'Penelantaran '],
   ['K004', 'Kekerasan seksual'],
   ['K005', 'Perdagangan Orang'],
   ['K006', 'Eksploitasi'],
-];
+]
 
 const ListGejala = ({ navigation }) => {
   return (
@@ -31,7 +34,14 @@ const ListGejala = ({ navigation }) => {
       </View>
       <ScrollView>
       <View style={styles.content}>
+        <Text style={styles.sectionHeader}>List Pelayanan</Text>
         {pelayanan.map((a, index) => (
+          <Text key={index} style={styles.cardText}>
+            {a[0]} - {a[1]}
+          </Text>
+        ))}
+        <Text style={styles.sectionHeader}>List Kekerasan</Text>
+        {kekerasan.map((a, index) => (
           <Text key={index} style={styles.cardText}>
             {a[0]} - {a[1]}
           </Text>
@@ -47,6 +57,7 @@ const ListGejala = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   cardText: {
+    textAlign: 'left',
     color: 'white',
     backgroundColor: '#BB2380',
     paddingVertical: 10,
@@ -74,7 +85,8 @@ const styles = StyleSheet.create({
   content: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-start',
+    padding: 20
   },
   button: {
     backgroundColor: '#FF66C4',
@@ -94,6 +106,13 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     color: 'white',
+  },
+  sectionHeader: {
+    fontSize: 18,
+    color: "black",
+    fontWeight: 'bold',
+    marginBottom: 5,
+    marginTop: 10,
   },
   logoutButton: {
     backgroundColor: '#BB2380',
