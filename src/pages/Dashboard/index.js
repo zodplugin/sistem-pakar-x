@@ -29,16 +29,16 @@ const Dashboard = ({navigation}) => {
           <View style={styles.content}>
             <TouchableOpacity style={styles.button}  onPress={() => navigation.navigate('Question')}>
               {/* <Image source={require('./assets/diagnose.png')} style={styles.icon} /> */}
-              <Text style={styles.buttonText}>Diagnosa</Text>
+              <Text style={styles.buttonText}>Deteksi</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button}  onPress={() => navigation.navigate('ListGejala')}>
               {/* <Image source={require('./assets/disease.png')} style={styles.icon} /> */}
-              <Text style={styles.buttonText}>Gejala dan Layanan Kekerasan</Text>
+              <Text style={styles.buttonText}>Informasi terkait Bentuk Kekerasan dan Jenis Layanan</Text>
             </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.logoutButton} onPress={signOut}>
+          {/* <TouchableOpacity style={styles.logoutButton} onPress={signOut}>
             <Text style={styles.logoutButtonText}>Logout</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
     );
 }
@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
       marginBottom: 10,
     },
     buttonText: {
+      textAlign: 'center',
       fontSize: 16,
       fontWeight: 'bold',
       color:'white',

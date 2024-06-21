@@ -61,7 +61,7 @@ const UserProfile = ({navigation, route}) => {
           style={{ height:40, width:40, borderRadius:100 }}
           source={IconX}
         />
-        <Text style={styles.headerText}>Dashboard</Text>
+        <Text style={styles.headerText}>Profile</Text>
       </View>
       <Gap height={10} />
       {profile.fullName.length > 0 && (

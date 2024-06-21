@@ -88,7 +88,7 @@ const QuestionsScreen = () => {
       .catch((error) => {
         console.error('Error saving myArray to AsyncStorage:', error);
       });
-      navigation.replace('MainApp', { result: myArray });
+      navigation.replace('Result', { result: myArray });
     } else {
       alert('Silakan lengkapi semua pertanyaan sebelum menyelesaikan.');
     }
@@ -208,13 +208,13 @@ const QuestionsScreen = () => {
         </View>
       ))}
     </ScrollView>
-    <View style={styles.footer}>
-      <Button
-        title="Selesai Menjawab"
-        onPress={handleSubmitAnswers}
-        disabled={!isAllQuestionsAnswered()}
-      />
-    </View>
+      <View style={styles.footer}>
+        <Button
+          title="Selesai Menjawab"
+          onPress={handleSubmitAnswers}
+          disabled={!isAllQuestionsAnswered()}
+        />
+      </View>
     </View>
   );
 };

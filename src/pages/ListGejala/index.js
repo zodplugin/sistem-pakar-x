@@ -9,17 +9,22 @@ const pelayanan = [
   ['P002', 'Penjangkauan Korban'],
   ['P003', 'Pengelolaan Kasus'],
   ['P004', 'Pendampingan Korban'],
-  ['P005', 'Mediasi'],
-  ['P006', 'Penampungan Sementara'],
+  ['P005', 'Pendampingan Layanan Hukum'],
+  ['P006', 'Pendampingan Layanan Kesehatan'],
+  ['P007', 'Pendampingan Layanan Rehabilitasi Sosial'],
+  ['P008', 'Pendampingan Reintegrasi Sosial'],
+  ['P009', 'Mediasi'],
+  ['P010', 'Penampungan Sementara'],
 ];
 
 const kekerasan = [
   ['K001', 'Kekerasan fisik'],
-  ['K002', 'Kekerasan psikologis'],
-  ['K003', 'Penelantaran '],
-  ['K004', 'Kekerasan seksual'],
-  ['K005', 'Perdagangan Orang'],
-  ['K006', 'Eksploitasi'],
+  ['K002', 'Kekerasan psikis'],
+  ['K004', 'Penelantaran '],
+  ['K005', 'Kekerasan seksual'],
+  ['K006', 'Trafficking (Perdagangan Orang)'],
+  ['K007', 'Eksploitasi'],
+  ['K008','Lainnya'],
 ]
 
 const ListGejala = ({ navigation }) => {
@@ -37,13 +42,13 @@ const ListGejala = ({ navigation }) => {
         <Text style={styles.sectionHeader}>List Pelayanan</Text>
         {pelayanan.map((a, index) => (
           <Text key={index} style={styles.cardText}>
-            {a[0]} - {a[1]}
+            {a[1]}
           </Text>
         ))}
         <Text style={styles.sectionHeader}>List Kekerasan</Text>
         {kekerasan.map((a, index) => (
           <Text key={index} style={styles.cardText}>
-            {a[0]} - {a[1]}
+            {a[1]}
           </Text>
         ))}
       </View>

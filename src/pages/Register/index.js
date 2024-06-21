@@ -44,13 +44,12 @@ const Register = ({navigation}) => {
       })
       .catch(err => {
         dispatch({type: 'SET_LOADING', value: false});
-        showError(err.message);
-        console.log(err.message);
+        showError("Email Sudah Terpakai/Terdapat Error");
       });
   };
   return (
     <View style={styles.page}>
-      <Header onPress={() => navigation.goBack()} title="Daftar Akun" />
+      <Header onPress={() => navigation.goBack()} title="Register" />
       <View style={styles.content}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <Input

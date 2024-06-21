@@ -87,7 +87,7 @@ const ResultScreen = ({ route, navigation }) => {
   ];
   
   return (
-    <View>
+    <View style={styles.container}>
       <View style={styles.header}>
         <Image
           style={{ height:40, width:40, borderRadius:100 }}
@@ -109,17 +109,25 @@ const ResultScreen = ({ route, navigation }) => {
             />
           </Card>
           <View style={styles.buttonContainer}>
-            <Button  title="Kembali Ke Dashboard" onPress={() => navigation.replace('Dashboard')} />
             <Button  title="  Jawab Ulang  " onPress={() => navigation.replace('Question')} />
           </View>
         </View>
       </View>
     </ScrollView>
+    <View style={styles.footer}>
+      <Button
+        title="Kembali Ke Dashboard"
+        onPress={() => navigation.replace('MainApp')}
+      />
+    </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  footer :{
+    padding:20,
+  },
   header: {
       flexDirection: 'row',
       gap:20,
@@ -186,7 +194,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   buttonContainer: {
-    marginVertical: 100,
+    marginVertical: 10,
+    paddingHorizontal: 20,
     gap:10,
   },
 });

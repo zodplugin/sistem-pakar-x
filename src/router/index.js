@@ -28,8 +28,6 @@ const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 const MainApp = ({route}) => {
-  const hasil = route && route.params ? route.params.hasil : null;
-  console.log('Mainapp = ' + hasil)
   return (
     // <Drawer.Navigator initialRouteName="Home">
     //   <Drawer.Screen
@@ -40,7 +38,7 @@ const MainApp = ({route}) => {
     //   <Drawer.Screen name="Notifications" component={Messages} />
     // </Drawer.Navigator>
     <Tab.Navigator tabBar={props => <BottomNavigator {...props} />}>
-      <Tab.Screen name='Result' component={Result} initialParams={{result: hasil}}/>
+      <Tab.Screen name='Dashboard' component={Dashboard}/>
       <Tab.Screen name="Profile" component={UserProfile} />
     </Tab.Navigator>
   );

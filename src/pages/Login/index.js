@@ -33,13 +33,13 @@ const Login = ({navigation}) => {
           .then(resDB => {
             if (resDB.val()) {
               storeData('user', resDB.val());
-              navigation.replace('Dashboard');
+              navigation.replace('MainApp');
             }
           });
       })
       .catch(err => {
         dispatch({type: 'SET_LOADING', value: false});
-        showError(err.message);
+        showError("Email/Password Salah");
       });
   };
 

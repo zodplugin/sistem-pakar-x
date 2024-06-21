@@ -28,7 +28,7 @@ const Splash = ({navigation}) => {
         Fire.auth()
           .signInWithEmailAndPassword(email, decryptedPassword)
           .then(() => {
-            navigation.replace('Dashboard');
+            navigation.replace('MainApp');
           })
           .catch(() => {
             navigation.replace('GetStarted');
@@ -38,7 +38,7 @@ const Splash = ({navigation}) => {
           if (user) {
             user.getIdToken().then(token => {
               AsyncStorage.setItem('userToken', token);
-              navigation.replace('Dashboard');
+              navigation.replace('MainApp');
             });
           } else {
             navigation.replace('GetStarted');
