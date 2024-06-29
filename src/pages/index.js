@@ -16,6 +16,7 @@ import Question from './Question';
 import Result from './Result'
 import Dashboard from './Dashboard';
 import ListGejala from './ListGejala';
+import ListProvinsi from './ListProvinsi';
 
 export {
   Splash,
@@ -35,5 +36,6 @@ export {
   Question,
   Result,
   Dashboard,
-  ListGejala
+  ListGejala,
+  ListProvinsi
 };

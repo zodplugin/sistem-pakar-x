@@ -29,7 +29,11 @@ const Dashboard = ({navigation}) => {
           <View style={styles.content}>
             <TouchableOpacity style={styles.button}  onPress={() => navigation.navigate('Question')}>
               {/* <Image source={require('./assets/diagnose.png')} style={styles.icon} /> */}
-              <Text style={styles.buttonText}>Deteksi</Text>
+              <Text style={styles.buttonText}>Identifikasi</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button}  onPress={() => navigation.navigate('ListProvinsi')}>
+              {/* <Image source={require('./assets/diagnose.png')} style={styles.icon} /> */}
+              <Text style={styles.buttonText}>Lihat Daftar Kontak Layanan</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button}  onPress={() => navigation.navigate('ListGejala')}>
               {/* <Image source={require('./assets/disease.png')} style={styles.icon} /> */}

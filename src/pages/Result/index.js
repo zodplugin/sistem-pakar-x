@@ -28,18 +28,22 @@ const ResultScreen = ({ route, navigation }) => {
     }
   }, [route.params]);
   const pelayanan = [
+    ['K001', 'Kekerasan fisik'],
+    ['K002', 'Kekerasan psikis'],
+    ['K003', 'Penelantaran '],
+    ['K004', 'Kekerasan seksual'],
+    ['K005', 'Trafficking (Perdagangan Orang)'],
+    ['K006', 'Eksploitasi'],
+    ['K007', 'Lainnya'],
     ['P001', 'Pengaduan Masyarakat'],
     ['P002', 'Penjangkauan Korban'],
     ['P003', 'Pengelolaan Kasus'],
-    ['P004', 'Pendampingan Korban'],
-    ['P005', 'Mediasi'],
-    ['P006', 'Penampungan Sementara'],
-    ['K001', 'Kekerasan fisik'],
-    ['K002', 'Kekerasan psikologis'],
-    ['K003', 'Penelantaran '],
-    ['K004', 'Kekerasan seksual'],
-    ['K005', 'Perdagangan Orang'],
-    ['K006', 'Eksploitasi'],
+    ['P004', 'Pendampingan Korban Layanan Hukum'],
+    ['P005', 'Pendampingan Korban Layanan Kesehatan'],
+    ['P006', 'Pendampingan Korban Layanan Rehabilitasi Sosial'],
+    ['P007', 'Pendampingan Korban Reintegrasi Sosial'],
+    ['P008', 'Mediasi'],
+    ['P009', 'Penampungan Sementara'],
   ];
   const resultWithK = [];
   const resultWithP = [];
