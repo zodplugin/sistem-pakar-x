@@ -7,20 +7,14 @@ import {
   Register,
   Login,
   UploadPhoto,
-  Doctor,
-  Messages,
-  Hospitals,
-  ChooseDoctor,
-  Chatting,
   UserProfile,
   UpdateProfile,
-  DoctorProfile,
-  News,
   Dashboard,
   Question,
   Result,
   ListGejala,
-  ListProvinsi
+  ListProvinsi,
+  Detail
 } from '../pages';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {BottomNavigator, Profile} from '../components';
@@ -51,6 +45,11 @@ const Router = () => {
       <Stack.Screen
         name="Dashboard"
         component={Dashboard}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="Detail"
+        component={Detail}
         options={{headerShown: false}}
       />
       <Stack.Screen
@@ -109,16 +108,6 @@ const Router = () => {
         options={{headerShown: false}}
       />
       <Stack.Screen
-        name="ChooseDoctor"
-        component={ChooseDoctor}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="Chatting"
-        component={Chatting}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
         name="UserProfile"
         component={UserProfile}
         options={{headerShown: true}}
@@ -126,16 +115,6 @@ const Router = () => {
       <Stack.Screen
         name="UpdateProfile"
         component={UpdateProfile}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="DoctorProfile"
-        component={DoctorProfile}
-        options={{headerShown: false}}
-      />
-      <Stack.Screen
-        name="News"
-        component={News}
         options={{headerShown: false}}
       />
     </Stack.Navigator>

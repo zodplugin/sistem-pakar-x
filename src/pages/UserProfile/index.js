@@ -80,18 +80,6 @@ const UserProfile = ({navigation, route}) => {
         onPress={() => navigation.navigate('UpdateProfile')}
       />
       <List
-        name="Languange"
-        desc="Last Update Yesterday"
-        type="next"
-        icon="language"
-      />
-      <List
-        name="Give Us Rate"
-        desc="Last Update Yesterday"
-        type="next"
-        icon="rate"
-      />
-      <List
         name="Sign Out"
         desc="Last Update Yesterday"
         type="next"

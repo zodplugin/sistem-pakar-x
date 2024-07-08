@@ -31,13 +31,9 @@ const Dashboard = ({navigation}) => {
               {/* <Image source={require('./assets/diagnose.png')} style={styles.icon} /> */}
               <Text style={styles.buttonText}>Identifikasi</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}  onPress={() => navigation.navigate('ListProvinsi')}>
-              {/* <Image source={require('./assets/diagnose.png')} style={styles.icon} /> */}
-              <Text style={styles.buttonText}>Lihat Daftar Kontak Layanan</Text>
-            </TouchableOpacity>
             <TouchableOpacity style={styles.button}  onPress={() => navigation.navigate('ListGejala')}>
               {/* <Image source={require('./assets/disease.png')} style={styles.icon} /> */}
-              <Text style={styles.buttonText}>Informasi terkait Bentuk Kekerasan dan Jenis Layanan</Text>
+              <Text style={styles.buttonText}>Informasi terkait Kekerasan dan Layanan</Text>
             </TouchableOpacity>
           </View>
           {/* <TouchableOpacity style={styles.logoutButton} onPress={signOut}>

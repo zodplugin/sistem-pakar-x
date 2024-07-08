@@ -6,7 +6,7 @@ import {colors, fonts} from '../../utils';
 
 const GetStarted = ({navigation}) => {
   return (
-    <ImageBackground source={ILGetStarted} style={styles.page}>
+    <View style={styles.page}>
       <View>
         <Image
           style={{ height:100, width:100, borderRadius:100 }}
@@ -25,7 +25,7 @@ const GetStarted = ({navigation}) => {
           onPress={() => navigation.replace('Login')}
         />
       </View>
-    </ImageBackground>
+    </View>
   );
 };
 
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   page: {
     padding: 40,
     justifyContent: 'space-between',
-    backgroundColor: colors.white,
+    backgroundColor: '#BB2380',
     flex: 1,
   },
   title: {

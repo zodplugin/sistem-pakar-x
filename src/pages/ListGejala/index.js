@@ -19,12 +19,12 @@ const pelayanan = [
 const kekerasan = [
   ['K001', 'Kekerasan fisik'],
   ['K002', 'Kekerasan psikis'],
-  ['K003', 'Penelantaran '],
+  ['K003', 'Penelantaran'],
   ['K004', 'Kekerasan seksual'],
   ['K005', 'Trafficking (Perdagangan Orang)'],
   ['K006', 'Eksploitasi'],
-  ['K007','Lainnya'],
-]
+  ['K007', 'Lainnya'],
+];
 
 const ListGejala = ({ navigation }) => {
   return (
@@ -34,23 +34,23 @@ const ListGejala = ({ navigation }) => {
           style={{ height: 40, width: 40, borderRadius: 100 }}
           source={IconX}
         />
-        <Text style={styles.headerText}>List Layanan Kekerasan</Text>
+        <Text style={styles.headerText}>Informasi</Text>
       </View>
       <ScrollView>
-      <View style={styles.content}>
-        <Text style={styles.sectionHeader}>List Pelayanan</Text>
-        {pelayanan.map((a, index) => (
-          <Text key={index} style={styles.cardText}>
-            {a[1]}
-          </Text>
-        ))}
-        <Text style={styles.sectionHeader}>List Kekerasan</Text>
-        {kekerasan.map((a, index) => (
-          <Text key={index} style={styles.cardText}>
-            {a[1]}
-          </Text>
-        ))}
-      </View>
+        <View style={styles.content}>
+          <Text style={styles.sectionHeader}>Bentuk Kekerasan</Text>
+          {kekerasan.map((a, index) => (
+            <TouchableOpacity key={index} onPress={() => navigation.navigate('Detail', { type: 'kekerasan', id: a[0] })}>
+              <Text style={styles.cardText}>{a[1]}</Text>
+            </TouchableOpacity>
+          ))}
+          <Text style={styles.sectionHeader}>Jenis Layanan</Text>
+          {pelayanan.map((a, index) => (
+            <TouchableOpacity key={index} onPress={() => navigation.navigate('Detail', { type: 'pelayanan', id: a[0] })}>
+              <Text style={styles.cardText}>{a[1]}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
       </ScrollView>
       <TouchableOpacity style={styles.logoutButton} onPress={() => navigation.replace('MainApp')}>
         <Text style={styles.logoutButtonText}>Kembali</Text>
@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#BB2380',
     paddingVertical: 10,
     paddingHorizontal: 10,
-    marginVertical: 5, // Changed to give some space between cards
+    marginVertical: 5,
     borderRadius: 12,
     fontSize: 16,
   },
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'flex-start',
-    padding: 20
+    padding: 20,
   },
   button: {
     backgroundColor: '#FF66C4',
@@ -113,13 +113,13 @@ const styles = StyleSheet.create({
   },
   sectionHeader: {
     fontSize: 18,
-    color: "black",
+    color: 'black',
     fontWeight: 'bold',
     marginBottom: 5,
     marginTop: 10,
   },
   logoutButton: {
-    backgroundColor: '#BB2380',
+    backgroundColor: '#FF66C4',
     padding: 15,
     alignItems: 'center',
     margin: 20,

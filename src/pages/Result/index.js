@@ -83,11 +83,11 @@ const ResultScreen = ({ route, navigation }) => {
   );
   const sections = [
     { title: 'Kekerasan yang dialami Korban', data: convertedResultWithK  },
-    { title: 'Pelayanan yang Tepat untuk Korban', data: convertedResultWithP }
+    { title: 'Layanan yang tepat untuk Korban', data: convertedResultWithP }
   ];
   const sectionsNull = [
     { title: 'Kekerasan yang dialami Korban', data: [["","Tidak Ditemukan"]]  },
-    { title: 'Pelayanan yang Tepat untuk Korban', data: [["","Tidak Ditemukan"]] }
+    { title: 'Layanan yang tepat untuk Korban', data: [["","Tidak Ditemukan"]] }
   ];
   
   return (
@@ -97,7 +97,7 @@ const ResultScreen = ({ route, navigation }) => {
           style={{ height:40, width:40, borderRadius:100 }}
           source={IconX}
         />
-        <Text style={styles.headerText}>Dashboard</Text>
+        <Text style={styles.headerText}>Result</Text>
       </View>
     <ScrollView contentContainerStyle={styles.scrollViewContent}>
       <View style={styles.container}>
@@ -114,6 +114,9 @@ const ResultScreen = ({ route, navigation }) => {
           </Card>
           <View style={styles.buttonContainer}>
             <Button  title="  Jawab Ulang  " onPress={() => navigation.replace('Question')} />
+          </View>
+          <View style={styles.buttonContainer}>
+            <Button  title="  Lihat Daftar Kontak Layanan  " onPress={() => navigation.replace('ListProvinsi')} />
           </View>
         </View>
       </View>
